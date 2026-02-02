@@ -1,20 +1,30 @@
+
 #include "Serializer.hpp"
 
 int main()
 {
-    Data data;
-    data.nb = 42;
-    data.name = "Hello, World!";
+    Data d;
+    d.nb = 42;
+    d.name = "Hello Serializer!";
 
-    // Serialize the pointer to Data
-    uintptr_t raw = Serializer::serialize(&data);
+    std::cout << "Original Data pointer: " << &d << std::endl;
 
-    // Deserialize back to Data pointer
-    Data *deserializedData = Serializer::deserialize(raw);
+    // Serialize
+    uintptr_t raw = Serializer::serialize(&d);
+    std::cout << "Serialized value: " << raw << std::endl;
 
-    // Output the results
-    std::cout << "Original Data: nb = " << data.nb << ", name = " << data.name << std::endl;
-    std::cout << "Deserialized Data: nb = " << deserializedData->nb << ", name = " << deserializedData->name << std::endl;
+    // Deserialize
+    Data *ptr = Serializer::deserialize(raw);
+    std::cout << "Deserialized Data pointer: " << ptr << std::endl;
+
+    // Test equality
+    if (ptr == &d)
+        std::cout << "Success: Pointers are equal!" << std::endl;
+    else
+        std::cout << "Error: Pointers differ!" << std::endl;
+
+    // Show data content
+    std::cout << "Number: " << ptr->nb << ", Text: " << ptr->name << std::endl;
 
     return 0;
 }

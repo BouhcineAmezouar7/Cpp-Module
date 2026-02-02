@@ -10,7 +10,8 @@ Serializer &Serializer::operator=(const Serializer &other)
 }
 Serializer::~Serializer() {}
 
-
+// the reinterpret_cast operator is used to convert any pointer type to any other pointer type, even of unrelated classes.
+// It can also be used to convert a pointer to an integer type and vice versa.
 uintptr_t Serializer::serialize(Data *ptr)
 {
     return (reinterpret_cast<uintptr_t>(ptr));

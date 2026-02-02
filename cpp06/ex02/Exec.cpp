@@ -1,5 +1,6 @@
 #include "Base.hpp"
 
+
 Base *generate(void)
 {
     int r = std::rand() % 3;
@@ -31,12 +32,29 @@ void identify(Base *p)
 
 void identify(Base &p)
 {
-    if (dynamic_cast<A *>(&p))
+    try
+    {
+        (void)dynamic_cast<A &>(p);
         std::cout << "A" << std::endl;
-    else if (dynamic_cast<B *>(&p))
-        std::cout << "B" << std::endl;
-    else if (dynamic_cast<C *>(&p))
-        std::cout << "C" << std::endl;
-    else
-        std::cout << "Unknow type" << std::endl;
+    }
+    catch (std::exception &bc)
+    {
+        try
+        {
+            (void)dynamic_cast<B &>(p);
+            std::cout << "B" << std::endl;
+        }
+        catch (std::exception &bc)
+        {
+            try
+            {
+                (void)dynamic_cast<C &>(p);
+                std::cout << "C" << std::endl;
+            }
+            catch (std::exception &bc)
+            {
+                std::cout << "Unknow type" << std::endl;
+            }
+        }
+    }
 }

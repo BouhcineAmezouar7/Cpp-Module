@@ -13,7 +13,7 @@ template <typename T>
 void ScalarConverter::print_convert_value(T value)
 {
     // char
-    if (std::isnan(value) || value > std::numeric_limits<char>::max() || value < std::numeric_limits<char>::min())
+    if (std::isnan(value) || value > std::numeric_limits<char>::max() || value < std::numeric_limits<char>::min()) // max: 127, min: -128
         std::cout << "char : impossible" << std::endl;
     else if (!std::isprint(static_cast<char>(value)))
         std::cout << "char : Non displayable" << std::endl;
