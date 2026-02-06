@@ -14,11 +14,21 @@ void ft_swap(T &a, T &b)
 template <typename T>
 T ft_min(T &a, T &b)
 {
-    return (a < b) ? a : b;
+    if (a == b)
+        return (b);
+    if (a < b)
+        return (a);
+    else
+        return (b);
 }
 
 template <typename T>
 T ft_max(T &a, T &b)
 {
-    return (a > b) ? a : b;
+    if (a == b)
+        return (b);
+    if (a > b)
+        return (a);
+    else
+        return (b);
 }

@@ -7,69 +7,63 @@ template <typename T>
 class Array
 {
 private:
-    T *_data;
-    unsigned int _size;
+    T *data;
+    unsigned int array_size;
 
 public:
-    // Default constructor
-    Array() : _data(NULL), _size(0) {}
+    Array() : data(NULL), array_size(0) {}
 
-    // Size constructor
-    Array(unsigned int n) : _data(NULL), _size(n)
+    Array(unsigned int n) : data(NULL), array_size(n)
     {
         if (n > 0)
-            _data = new T[n];
+            data = new T[n];
     }
 
-    // Copy constructor
-    Array(const Array &other) : _data(NULL), _size(other._size)
+    Array(const Array &other) : data(NULL), array_size(other.array_size)
     {
-        if (_size > 0)
+        if (array_size > 0)
         {
-            _data = new T[_size];
-            for (unsigned int i = 0; i < _size; i++)
-                _data[i] = other._data[i];
+            data = new T[array_size];
+            for (unsigned int i = 0; i < array_size; i++)
+                data[i] = other.data[i];
         }
     }
 
-    // Assignment operator
     Array &operator=(const Array &other)
     {
         if (this != &other)
         {
-            delete[] _data;
-            _size = other._size;
-            _data = (_size > 0) ? new T[_size] : NULL;
-            for (unsigned int i = 0; i < _size; i++)
-                _data[i] = other._data[i];
+            delete[] data;
+            array_size = other.array_size;
+            data = (array_size > 0) ? new T[array_size] : NULL;
+
+            for (unsigned int i = 0; i < array_size; i++)
+                data[i] = other.data[i];
         }
         return *this;
     }
 
-    // Destructor
     ~Array()
     {
-        delete[] _data;
+        delete[] data;
     }
 
-    // Size
     unsigned int size() const
     {
-        return _size;
+        return array_size;
     }
 
-    // Operator []
     T &operator[](unsigned int index)
     {
-        if (index >= _size)
+        if (index >= array_size)
             throw std::out_of_range("Index out of bounds");
-        return _data[index];
+        return data[index];
     }
 
     const T &operator[](unsigned int index) const
     {
-        if (index >= _size)
+        if (index >= array_size)
             throw std::out_of_range("Index out of bounds");
-        return _data[index];
+        return data[index];
     }
 };
