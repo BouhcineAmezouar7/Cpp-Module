@@ -11,8 +11,8 @@ void ft_swap(T &a, T &b)
     b = temp;
 };
 
-template <typename T>
-T ft_min(T &a, T &b)
+template <typename B>
+B ft_min(B &a, B &b)
 {
     if (a == b)
         return (b);

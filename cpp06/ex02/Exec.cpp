@@ -20,7 +20,7 @@ Base *generate(void)
 
 void identify(Base *p)
 {
-    if (dynamic_cast<A *>(p))
+    if (dynamic_cast<A *>(p)) // check if p can be casted to A*
         std::cout << "A" << std::endl;
     else if (dynamic_cast<B *>(p))
         std::cout << "B" << std::endl;
